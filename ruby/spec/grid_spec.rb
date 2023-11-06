@@ -19,4 +19,27 @@ RSpec.describe Grid do
             expect(grid.cells.flatten.all?(&:live?)).to eq false
         end
     end
+
+    describe '#cell_at' do
+        it 'returns cell at correct position' do
+            grid = Grid.new()
+            cell = grid.cell_at(3, 7)
+            
+            expect(cell.x).to eq 3
+            expect(cell.y).to eq 7
+        end
+
+        it 'returns nil if the x or y coordinate out of range' do
+            grid = Grid.new()
+            cell1 = grid.cell_at(-1, 0)
+            cell2 = grid.cell_at(0, -1)
+            cell3 = grid.cell_at(9, 0)
+            cell4 = grid.cell_at(0, 9)
+
+            expect(cell1).to eq nil
+            expect(cell2).to eq nil
+            expect(cell3).to eq nil
+            expect(cell4).to eq nil
+        end
+    end
 end
